@@ -1,0 +1,20 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: echoapp-rc
+  namespace: stg
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:stg-*
+spec:
+  releaseName: echoapp-rc
+  chart:
+    git: git@github.com:OferRavid/helm-operator-get-started
+    path: charts/echoapp
+    ref: master
+  values:
+    image:
+      repository: eu.gcr.io/develeap-bootcamp/echo
+      tag: stg-kwyaigb4
+    replicaCount: 2
