@@ -26,7 +26,7 @@ spec:
             - name: LOGLEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.configmap.name  }}
+                  name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name }}
                   key: LOGLEVEL
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
