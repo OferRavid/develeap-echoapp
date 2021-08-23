@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: {{ include "echoapp.fullname" . }}-{{ .Values.StorageClass.name }}
+  name: {{ .Values.StorageClass.name }}
 provisioner: {{ .Values.StorageClass.provisioner }}  #kubernetes.io/gce-pd
 parameters:
   {{- if eq .Values.StorageClass.provisioner "kubernetes.io/gce-pd" }}
