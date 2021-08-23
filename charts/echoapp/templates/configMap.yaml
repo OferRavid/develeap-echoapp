@@ -4,5 +4,3 @@ metadata:
   name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name }}
 data:
   LOGLEVEL: {{ .Values.configmap.loglevel | quote }}
-  PERSIST: {{ .Values.configmap.persist | quote}}
-  DBNAME: {{ .Values.configmap.dbname | quote }}

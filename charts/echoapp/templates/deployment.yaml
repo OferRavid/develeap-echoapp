@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "echoapp.fullname" . }}
+  name: {{ include "echoapp.fullname" . }}-{{ .Values.app.name }}
   labels:
     {{- include "echoapp.labels" . | nindent 4 }}
 spec:
@@ -23,25 +23,10 @@ spec:
               containerPort: {{ .Values.app.containerPort }}
               protocol: TCP
           env:
-            - name: MONGODBURL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "echoapp.fullname" . }}-{{ .Values.secret.name }}
-                  key: mongo-db-url 
             - name: LOGLEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name  }}
+                  name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name }}
                   key: LOGLEVEL
-            - name: PERSIST
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name  }}
-                  key: PERSIST
-            - name: DBNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "echoapp.fullname" . }}-{{ .Values.configmap.name  }}
-                  key: DBNAME
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
