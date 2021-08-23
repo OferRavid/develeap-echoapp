@@ -3,7 +3,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.name }}
+  name: {{ include "echoapp.fullname" . }}-{{ .Values.ingress.name }}
   labels:
     {{- include "echoapp.labels" . | nindent 4 }}
   annotations:
@@ -17,7 +17,7 @@ spec:
   tls:
   - hosts:
       - {{ .Values.ingress.host }}
-    secretName: {{ .Values.cert.privKeyName }}
+    secretName: {{ include "echoapp.fullname" . }}-{{ .Values.cert.privKeyName }}
   rules:
   - host: {{ .Values.ingress.host }}
     http:
