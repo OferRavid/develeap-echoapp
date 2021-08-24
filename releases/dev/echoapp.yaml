@@ -16,5 +16,5 @@ spec:
   values:
     image:
       repository: eu.gcr.io/develeap-bootcamp/echo
-      tag: dev-q0yiiluw
+      tag: dev-id7gd7ii
     replicaCount: 1
