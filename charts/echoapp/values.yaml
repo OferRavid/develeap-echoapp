@@ -14,7 +14,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 app:
-  name: echo-v5
+  name: echov5
   containerPort: 3000
 
 configmap:
